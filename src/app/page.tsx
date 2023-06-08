@@ -10,8 +10,6 @@ export default function Home() {
         height={'500'}
       />
       <div>{"Hold on, I've literally just started building this site today..."}</div>
-      <div>{"Why not check out my last half built website:"}</div>
-      <a href={"https://portfolio2022-ruddy.vercel.app/"}>https://portfolio2022-ruddy.vercel.app/</a>
     </main>
   )
 }
