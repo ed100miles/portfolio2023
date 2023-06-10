@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Typewriter from 'typewriter-effect';
 import { useInterval } from 'usehooks-ts'
 import { contentMap } from "./Content";
@@ -31,9 +31,13 @@ export const ContentBox = () => {
   }
 
   const ContentText = ({ selected }: { selected: keyof ContentMap }) => {
-    const os = navigator.userAgent;
     const [maskHeight, setMaskHeight] = useState(100)
     const [maskWidth, setMaskWidth] = useState(100)
+    const [os, setOS] = useState("")
+
+    useEffect(() => {
+      setOS(window.navigator.userAgent)
+    }, [])
 
     const getInterval = () => {
       if (maskHeight == 100) return 1000
