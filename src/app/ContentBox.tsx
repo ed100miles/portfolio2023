@@ -8,7 +8,6 @@ import type { ContentMap } from "./Content";
 
 export const ContentBox = () => {
   const [selectedContent, setSelectedContent] = useState<keyof ContentMap>('welcome')
-
   const Nav = () => {
     return (
       <div className="w-full h-[60vh] lg:h-2/3 lg:w-1/4">
@@ -32,6 +31,7 @@ export const ContentBox = () => {
   }
 
   const ContentText = ({ selected }: { selected: keyof ContentMap }) => {
+    const os = navigator.userAgent;
     const [maskHeight, setMaskHeight] = useState(100)
     const [maskWidth, setMaskWidth] = useState(100)
 
@@ -59,7 +59,8 @@ export const ContentBox = () => {
           />
         </div>
         <div
-          className="relative z-10 h-5/6 overflow-auto scrollbar-thumb-malachite scrollbar-track-islamGreen scrollbar-thin scrollbar-corner-vampire pr-2"
+          className={`relative z-10 h-5/6 ${os.toLowerCase().includes("iphone") ? 'overflow-scroll' : 'overflow-auto'
+            } scrollbar-thumb-malachite scrollbar-track-islamGreen scrollbar-thin scrollbar-corner-vampire pr-2`}
           style={{ overflow: maskHeight + maskWidth > 0 ? 'hidden' : 'auto' }}
         >
           <div className="w-11/12">
