@@ -1,116 +1,93 @@
-"use client"
-
-import { useState } from "react"
-import Typewriter from 'typewriter-effect';
-import { useInterval } from 'usehooks-ts'
+import { ReactElement } from "react"
 
 interface Content {
   title: string,
-  content: string[]
+  content: string[] | ReactElement
 }
 
-interface ContentMap {
+export interface ContentMap {
   welcome: Content,
   about: Content,
   skills: Content,
   experience: Content
 }
 
-const contentMap: ContentMap = {
-  welcome: {
-    title: 'Welcome.',
-    content: ["SITE UNDER ACTIVE CONSTRUCTION. I started yesterday, should be done next week. Please check back soon!",
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet voluptates unde fuga, facere ex, in earum perspiciatis eligendi tenetur pariatur quisquam impedit atque rem veniam nisi aspernatur quibusdam laborum reiciendis."]
-  },
-  about: {
-    title: 'About Me.',
-    content: ["SITE UNDER ACTIVE CONSTRUCTION. I started yesterday, should be done next week. Please check back soon!",
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet voluptates unde fuga, facere ex, in earum perspiciatis eligendi tenetur pariatur quisquam impedit atque rem veniam nisi aspernatur quibusdam laborum reiciendis."]
-  },
-  skills: {
-    title: 'Key Skills.',
-    content: ["SITE UNDER ACTIVE CONSTRUCTION. I started yesterday, should be done next week. Please check back soon!",
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet voluptates unde fuga, facere ex, in earum perspiciatis eligendi tenetur pariatur quisquam impedit atque rem veniam nisi aspernatur quibusdam laborum reiciendis."]
-  },
-  experience: {
-    title: 'Experience.',
-    content: ["SITE UNDER ACTIVE CONSTRUCTION. I started yesterday, should be done next week. Please check back soon!",
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet voluptates unde fuga, facere ex, in earum perspiciatis eligendi tenetur pariatur quisquam impedit atque rem veniam nisi aspernatur quibusdam laborum reiciendis."]
-  },
-}
+const WelcomeContent = () => (
+  <div className="space-y-4">
+    <div>{"I'm Ed Miles a self-taught full-stack software developer looking for an exciting new position."}</div>
+    <div>{"Take a look around and feel free to get in contact."}</div>
+    <div>{"Thanks."}</div>
+    <div>{"PLEASE NOTE: Site is incomplete and under active construction."}</div>
+  </div>
+)
 
-export const Content = () => {
-  const [selectedContent, setSelectedContent] = useState<keyof ContentMap>('welcome')
+const AboutContent = () => (
+  <div className="space-y-4">
+    <div>{"I'm experienced working with Python, TypeScript, React, and AWS to create, deploy, and maintain scalable and performant applications."}</div>
+    <div>{"I live in London with my partener and our two cats."}</div>
+    <div>{"I'm slightly obsessed with bouldering and rock climbing."}</div>
+    <div>{"I think ALL computer software should look like it's from the matrix."}</div>
+  </div>
+)
 
-  const Nav = () => {
-    return (
-      <div className="w-full h-[60vh] lg:h-2/3 lg:w-1/4">
-        <div className="pb-4 font-semibold text-lg">Directory</div>
-        <div className="h-fit w-full">
-          {
-            Object.entries(contentMap).map((entry) => {
-              const key = entry[0] as keyof ContentMap
-              const value = entry[1]
-              return <div key={key}>
-                <button
-                  className="pb-2 hover:underline"
-                  onClick={() => setSelectedContent(key)}
-                >{value.title}</button>
-              </div>
-            })
-          }
-        </div>
-      </div>
-    )
-  }
-
-  const ContentText = ({ selected }: { selected: keyof ContentMap }) => {
-    const [maskHeight, setMaskHeight] = useState(100)
-    const [maskWidth, setMaskWidth] = useState(100)
-
-    const getInterval = () => {
-      if (maskHeight == 100) return 1000
-      if (maskHeight + maskWidth <= 0) return null
-      return 10
+const TechSkillsContent = () => {
+  const skillsMap = [
+    {
+      skill: "Python",
+      description: "Experienced writing clean, robust, adaptable and reusable “pythonic” code through the utilisation of object-oriented design principles, and in line with the PEP8 style guide. Proficient with many common Python libraries including Flask, Django, FastAPI, Numpy, Pandas, Scikit-learn, and OpenCV"
+    },
+    {
+      skill: "JavaScript / TypeScript",
+      description: "Competent with the latest ECMAScript features and comfortable working with many JavaScript libraries and frameworks like ReactJS, NextJS, D3.js, Lodash, Chart.js and ReCharts, plus common component libraries such as MaterialUI and Radix."
+    },
+    {
+      skill: "AWS Cloud Computing",
+      description: "Well practised in various AWS cloud compute services, such as; deploying EC2 instances and Lambdas, front-end applications with Amplify; setting up container clusters with ECS; storage solutions with DynamoDB and S2 buckets; and authentication with Cognito"
+    },
+    {
+      skill: "Database management",
+      description: "Comfortable working with both relational and non-relational databases."
+    },
+    {
+      skill: "Version Control",
+      description: "Git, Github, general repo management, fixing conflicts, code reviews."
+    },
+    {
+      skill: "Docker",
+      description: "Comfortable working with both relational and non-relational databases."
     }
-
-    useInterval(() => {
-      if(maskHeight>0){setMaskHeight(maskHeight - 1)}
-      else {setMaskWidth(maskWidth-2)}
-    }, getInterval())
-
-    return (
-      <div className="w-full h-[60vh] lg:h-2/3 lg:w-4/6 pr-8 lg:border-r-[1px] border-malachite pl-1">
-        <div className="text-6xl pb-8">
-          <Typewriter
-            options={{
-              strings: contentMap[selected].title,
-              autoStart: true,
-              cursor: "",
-              delay: 50
-            }}
-          />
-        </div>
-        <div className="relative -z-10">
-          {contentMap[selected].content.map(
-            (chunk, idx) => <div key={idx}>{chunk}<br /><br /></div>)
-          }
-          <div
-            className={'absolute inset-x-0 bottom-0 right-0 w-full border-t-[1px] border-malachite bg-vampire'}
-            style={{
-              height: `${maskHeight}%`,
-              width: `${maskWidth}%`
-            }}
-          />
-        </div>
-      </div>
-    )
-  }
+  ]
 
   return (
-    <div className="h-full w-full flex items-center justify-evenly flex-wrap sm:min-h-fit">
-      <ContentText selected={selectedContent} />
-      <Nav />
-    </div>
+    <ul className="space-y-4">
+      {skillsMap.map(skill => (
+        <li key={skill.skill} className="space-y-1">
+          <strong className="font-bold md:text-lg">{`> ${skill.skill} `}</strong>
+          <div className="font-extralight text-xs md:text-sm ">
+            {`${skill.description}`}
+          </div></li>
+      ))}
+    </ul>
   )
 }
+
+export const contentMap: ContentMap = {
+  welcome: {
+    title: 'Welcome',
+    content: <WelcomeContent />
+  },
+  about: {
+    title: 'About Me',
+    content: <AboutContent />
+  },
+  skills: {
+    title: 'Tech Skills',
+    content: <TechSkillsContent />
+  },
+  experience: {
+    title: 'Experience',
+    content: ["SITE UNDER ACTIVE CONSTRUCTION. I started yesterday, should be done next week. Please check back soon!",
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet voluptates unde fuga, facere ex, in earum perspiciatis eligendi tenetur pariatur quisquam impedit atque rem veniam nisi aspernatur quibusdam laborum reiciendis."]
+  },
+}
+
