@@ -5,6 +5,7 @@ import Typewriter from 'typewriter-effect';
 import { useInterval } from 'usehooks-ts'
 import { contentMap } from "./Content";
 import type { ContentMap } from "./Content";
+import { Icons } from "./Icons";
 
 export const ContentBox = () => {
   const [selectedContent, setSelectedContent] = useState<keyof ContentMap>('welcome')

@@ -2,7 +2,7 @@ import { ReactElement } from "react"
 
 interface Content {
   title: string,
-  content: string[] | ReactElement
+  content: ReactElement
 }
 
 export interface ContentMap {
@@ -14,10 +14,17 @@ export interface ContentMap {
 
 const WelcomeContent = () => (
   <div className="space-y-4">
-    <div>{"I'm Ed Miles a self-taught full-stack software developer looking for an exciting new position."}</div>
+    <div>{"I'm Ed Miles a self-taught full-stack software developer."}</div>
     <div>{"Take a look around and feel free to get in contact."}</div>
-    <div>{"Thanks."}</div>
     <div>{"PLEASE NOTE: Site is incomplete and under active construction."}</div>
+    <div>{"Wanna see how I made this? Check the github repo "}
+      <a
+        href="https://github.com/ed100miles/portfolio2023"
+        className="underline"
+      >{'here'}</a>
+      {"."}
+    </div>
+    <div>{"Thanks!"}</div>
   </div>
 )
 

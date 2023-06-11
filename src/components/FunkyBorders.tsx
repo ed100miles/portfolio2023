@@ -1,12 +1,16 @@
+import { Icons } from "@/app/Icons";
 import { ReactNode } from "react";
 
-export const FunkyBorders = ({ children }: { children: ReactNode }) => (
+export const FunkyBorders = ({ children, icons }: { children: ReactNode , icons: ReactNode}) => (
   <div className="flex flex-wrap w-full h-[160vh] lg:h-[90vh] min-h-full lg:min-h-full lg:max-w-[80vw] relative">
     <div className="bg-gradient-to-br from-malachite from-7% via-islamGreen via-15% to-vampire to-50% rounded-tl-xl h-[30vmin] w-[30vmin] -z-1 relative">
       <div className="bg-vampire h-[95%] w-[95%] bottom-0 right-0 absolute rounded-md"></div>
     </div>
     <div className="absolute h-[30vmin] w-[30vmin] bg-gradient-to-tl rounded-br-xl from-malachite from-7% via-islamGreen via-15% to-vampire to-50% bottom-0 right-0">
       <div className="bg-vampire h-[95%] w-[95%] rounded-md"></div>
+    </div>
+    <div className="absolute top-0 right-0">
+      <Icons/>
     </div>
     <div
       className="absolute w-5/6 lg:max-w-5xl h-5/6 z-10 flex items-center justify-center top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
