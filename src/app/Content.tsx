@@ -2,7 +2,7 @@ import { ReactElement } from "react"
 
 interface Content {
   title: string,
-  content: string[] | ReactElement
+  content: ReactElement
 }
 
 export interface ContentMap {
@@ -14,10 +14,18 @@ export interface ContentMap {
 
 const WelcomeContent = () => (
   <div className="space-y-4">
-    <div>{"I'm Ed Miles a self-taught full-stack software developer looking for an exciting new position."}</div>
+    <div>{"I'm Ed Miles a self-taught full-stack software developer."}</div>
     <div>{"Take a look around and feel free to get in contact."}</div>
-    <div>{"Thanks."}</div>
     <div>{"PLEASE NOTE: Site is incomplete and under active construction."}</div>
+    <div>{"Wanna see how I made this? Check the github repo "}
+      <a
+        href="https://github.com/ed100miles/portfolio2023"
+        className="underline"
+        target="_blank"
+      >{'here'}</a>
+      {"."}
+    </div>
+    <div>{"Thanks!"}</div>
   </div>
 )
 
@@ -63,7 +71,7 @@ const TechSkillsContent = () => {
       {skillsMap.map(skill => (
         <li key={skill.skill} className="space-y-1">
           <strong className="font-bold md:text-lg">{`> ${skill.skill} `}</strong>
-          <div className="font-extralight text-xs md:text-sm ">
+          <div className="font-extralight text-xs md:text-sm">
             {`${skill.description}`}
           </div></li>
       ))}
@@ -71,6 +79,33 @@ const TechSkillsContent = () => {
   )
 }
 
+
+const ExperienceContent = () => {
+  const minviroPoints = [
+    "Worked both independently and as part of a team of developers in a fast-paced environment to implement new features for suite of SaaS applications using the Kanban agile methodology.",
+    "Responsible for the full software development lifecycle, from planning to deployment, of a bespoke, highly customised data visualisation tool, written in TypeScript, using the React and D3, and deployed on AWS cloud computing infrastructure.",
+    "Collaborated with academics to integrate the ‘circular footprint formula’ recycling methodology into a SaaS tool for calculating the environmental impacts of mining operations.",
+    "Ensured code quality through unit testing, TDD and rigorous code reviews.",
+    "Helped junior hires develop through mentoring, pair programming, and learning sessions. "
+  ]
+  return (
+    <div className="space-y-4">
+      <div className="flex justify-between items-baseline space-x-5">
+        <div className="flex flex-col text-sm md:text-lg">
+          <div className="font-bold">Minviro Ltd</div>
+          <div className="text-xs md:text-base">Full Stack Developer</div>
+        </div>
+        <div className="text-xs md:text-sm font-thin">October 2021 - Present</div>
+      </div>
+      {
+        minviroPoints.map((point, idx) => {
+          return (
+            <div key={idx} className="font-extralight text-xs md:text-sm">{`> ${point}`}</div>
+          )
+        })
+      }
+    </div>)
+}
 export const contentMap: ContentMap = {
   welcome: {
     title: 'Welcome',
@@ -86,8 +121,7 @@ export const contentMap: ContentMap = {
   },
   experience: {
     title: 'Experience',
-    content: ["SITE UNDER ACTIVE CONSTRUCTION. I started yesterday, should be done next week. Please check back soon!",
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet voluptates unde fuga, facere ex, in earum perspiciatis eligendi tenetur pariatur quisquam impedit atque rem veniam nisi aspernatur quibusdam laborum reiciendis."]
+    content: <ExperienceContent />
   },
 }
 
