@@ -21,6 +21,7 @@ const WelcomeContent = () => (
       <a
         href="https://github.com/ed100miles/portfolio2023"
         className="underline"
+        target="_blank"
       >{'here'}</a>
       {"."}
     </div>
