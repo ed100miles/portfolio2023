@@ -5,7 +5,6 @@ import Typewriter from 'typewriter-effect';
 import { useInterval } from 'usehooks-ts'
 import { contentMap } from "./Content";
 import type { ContentMap } from "./Content";
-import { Icons } from "./Icons";
 
 export const ContentBox = () => {
   const [selectedContent, setSelectedContent] = useState<keyof ContentMap>('welcome')
@@ -53,7 +52,7 @@ export const ContentBox = () => {
 
     return (
       <div className="w-full h-[60vh] lg:h-2/3 lg:w-4/6 pr-8 lg:border-r-[1px] border-malachite pl-1">
-        <div className=" text-2xl md:text-6xl h-1/6 pb-20 text-islamGreen">
+        <div className="text-2xl md:text-6xl h-1/6 pb-2 md:pb-20 text-islamGreen">
           <Typewriter
             options={{
               strings: contentMap[selected].title,
