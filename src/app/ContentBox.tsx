@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Typewriter from 'typewriter-effect';
 import { useInterval } from 'usehooks-ts'
 import { contentMap } from "./Content";
@@ -8,7 +8,6 @@ import type { ContentMap } from "./Content";
 
 export const ContentBox = () => {
   const [selectedContent, setSelectedContent] = useState<keyof ContentMap>('welcome')
-
   const Nav = () => {
     return (
       <div className="w-full h-[60vh] lg:h-2/3 lg:w-1/4">
@@ -34,6 +33,11 @@ export const ContentBox = () => {
   const ContentText = ({ selected }: { selected: keyof ContentMap }) => {
     const [maskHeight, setMaskHeight] = useState(100)
     const [maskWidth, setMaskWidth] = useState(100)
+    const [os, setOS] = useState("")
+
+    useEffect(() => {
+      setOS(window.navigator.userAgent)
+    }, [])
 
     const getInterval = () => {
       if (maskHeight == 100) return 1000
@@ -59,7 +63,8 @@ export const ContentBox = () => {
           />
         </div>
         <div
-          className="relative z-10 h-5/6 overflow-auto scrollbar-thumb-malachite scrollbar-track-islamGreen scrollbar-thin scrollbar-corner-vampire pr-2"
+          className={`relative z-10 h-5/6 ${os.toLowerCase().includes("iphone") ? 'overflow-scroll' : 'overflow-auto'
+            } scrollbar-thumb-malachite scrollbar-track-islamGreen scrollbar-thin scrollbar-corner-vampire pr-2`}
           style={{ overflow: maskHeight + maskWidth > 0 ? 'hidden' : 'auto' }}
         >
           <div className="w-11/12">
