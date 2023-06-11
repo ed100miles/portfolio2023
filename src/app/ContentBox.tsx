@@ -10,7 +10,7 @@ export const ContentBox = () => {
   const [selectedContent, setSelectedContent] = useState<keyof ContentMap>('welcome')
   const Nav = () => {
     return (
-      <div className="w-full h-[60vh] lg:h-2/3 lg:w-1/4">
+      <div className="w-full h-fit lg:h-2/3 lg:w-1/4 pt-5 md:pt-0 pb-3">
         <div className="pb-4 font-semibold text-xl text-islamGreen">Directory</div>
         <div className="h-fit w-full text-islamGreen space-y-2">
           {
@@ -51,8 +51,8 @@ export const ContentBox = () => {
     }, getInterval())
 
     return (
-      <div className="w-full h-[60vh] lg:h-2/3 lg:w-4/6 pr-8 lg:border-r-[1px] border-malachite pl-1">
-        <div className="text-2xl md:text-6xl h-1/6 pb-2 md:pb-20 text-islamGreen">
+      <div className="w-full h-[60vh] lg:h-2/3 lg:w-4/6 lg:border-r-[1px] border-islamGreen pl-1 pr-1 md:pr-5 pb-3">
+        <div className="text-2xl md:text-6xl h-1/6 pt-2 md:pb-20 text-islamGreen">
           <Typewriter
             options={{
               strings: contentMap[selected].title,
@@ -64,10 +64,9 @@ export const ContentBox = () => {
         </div>
         <div
           className={`relative z-10 h-5/6 ${os.toLowerCase().includes("iphone") ? 'overflow-scroll' : 'overflow-auto'
-            } scrollbar-thumb-malachite scrollbar-track-islamGreen scrollbar-thin scrollbar-corner-vampire pr-2`}
+            } pr-3 text-xs md:text-base scrollbar-thumb-malachite scrollbar-track-islamGreen scrollbar-thin scrollbar-corner-vampire`}
           style={{ overflow: maskHeight + maskWidth > 0 ? 'hidden' : 'auto' }}
         >
-          <div className="w-11/12">
             <>{contentMap[selected].content}</>
             {maskHeight + maskWidth > 0 && <div
               className={'absolute inset-x-0 bottom-0 right-0 w-full border-t-[1px] border-malachite bg-vampire'}
@@ -76,7 +75,6 @@ export const ContentBox = () => {
                 width: `${maskWidth}%`
               }}
             />}
-          </div>
         </div>
       </div>
     )
