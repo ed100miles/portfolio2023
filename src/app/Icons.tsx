@@ -41,7 +41,7 @@ const GithubIcon = () => (
 
 export const Icons = () => {
   return (
-    <div className="w-full max-w-full flex space-x-10 pt-10 pr-10">
+    <div className="w-full max-w-full flex space-x-3 md:space-x-10 pt-5 md:pt-10 pr-10">
       <a className="w-4 md:w-5" href="mailto:edmilestech@gmail.com">
         <MailIcon />
       </a>

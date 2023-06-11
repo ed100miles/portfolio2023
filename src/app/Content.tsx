@@ -14,8 +14,7 @@ export interface ContentMap {
 
 const WelcomeContent = () => (
   <div className="space-y-4">
-    <div>{"I'm Ed Miles a self-taught full-stack software developer."}</div>
-    <div>{"Take a look around and feel free to get in contact."}</div>
+    <div>{"I'm Ed Miles a self-taught full-stack software developer. Take a look around and feel free to get in contact."}</div>
     <div>{"PLEASE NOTE: Site is incomplete and under active construction."}</div>
     <div>{"Wanna see how I made this? Check the github repo "}
       <a
@@ -95,7 +94,7 @@ const ExperienceContent = () => {
           <div className="font-bold">Minviro Ltd</div>
           <div className="text-xs md:text-base">Full Stack Developer</div>
         </div>
-        <div className="text-xs md:text-sm font-thin">October 2021 - Present</div>
+        <div className="text-xs md:text-sm font-thin pr-1 md:pr-3">October 2021 - Present</div>
       </div>
       {
         minviroPoints.map((point, idx) => {
