@@ -10,6 +10,7 @@ export interface ContentMap {
   about: Content,
   skills: Content,
   experience: Content
+  contact: Content
 }
 
 const WelcomeContent = () => (
@@ -29,8 +30,8 @@ const WelcomeContent = () => (
 
 const AboutContent = () => (
   <div className="space-y-4">
-    <div>{"After years of working in finance, and coding just for fun, I decided to make my hobby pay the bills, so I quit my job, built my first portfolio site and landed a job before the savings ran out."}</div>
-    <div>{"I'm currently working for Minviro, developing a suite of SaaS tools to help companies understand and mitigate the environmental impact of their products."}</div>
+    <div>{"After years of working in finance, and writing code just for fun, I decided to make my hobby pay the bills, so I quit my job, built my first portfolio site and quickly landed my first developer job before the savings ran out."}</div>
+    <div>{"I'm currently developing a suite of SaaS tools to help companies understand and mitigate the environmental impact of their products."}</div>
     <div>{"I'm primarily work with Python, TypeScript, React, and AWS to create, deploy, and maintain scalable and performant applications."}</div>
     <div>{"I live in London with my partner and our two cats, and I love rock climbing, boulering and getting out in the nature."}</div>
   </div>
@@ -104,6 +105,23 @@ const ExperienceContent = () => {
       }
     </div>)
 }
+
+const ContactContent = () => (
+  <div className="space-y-4 md:text-lg">
+    <div>{"Want to find out more?"}</div>
+    <div>{"You can email me at "}
+      <a href="mailto:ed@edmiles.dev" className="underline">{"ed@edmiles.dev"}</a>
+      {" or drop me a message on my "}
+      <a
+        href="https://www.linkedin.com/in/ed-miles-tech/"
+        className="underline"
+        target="_blank"
+      >{"LinkedIn"}</a>
+    </div>
+    <div>{"Looking forward to hearing from you!"}</div>
+  </div>
+)
+
 export const contentMap: ContentMap = {
   welcome: {
     title: 'Welcome',
@@ -120,6 +138,10 @@ export const contentMap: ContentMap = {
   experience: {
     title: 'Experience',
     content: <ExperienceContent />
+  },
+  contact: {
+    title: 'Contact',
+    content: <ContactContent />
   },
 }
 
