@@ -66,7 +66,7 @@ const iconMap = [
   },
   {
     icon: <MailIcon />,
-    href: "mailto:edmilestech@gmail.com",
+    href: "mailto:ed@edmiles.dev",
     tooltip: 'Email'
   },
   {

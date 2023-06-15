@@ -10,13 +10,13 @@ export interface ContentMap {
   about: Content,
   skills: Content,
   experience: Content
+  contact: Content
 }
 
 const WelcomeContent = () => (
-  <div className="space-y-4">
-    <div>{"I'm Ed Miles a self-taught full-stack software developer. Take a look around and feel free to get in contact."}</div>
-    <div>{"PLEASE NOTE: Site is incomplete and under active construction."}</div>
-    <div>{"Wanna see how I made this? Check the github repo "}
+  <div className="space-y-4 md:text-lg">
+    <div>{"I'm Ed Miles, a full-stack software developer passionate about creating amazing, engaging, powerful technology solutions to change the world for the better. Take a look around and feel free to get in contact."}</div>
+    <div>{"Wanna see how I made this site? Check the github repo "}
       <a
         href="https://github.com/ed100miles/portfolio2023"
         className="underline"
@@ -24,16 +24,16 @@ const WelcomeContent = () => (
       >{'here'}</a>
       {"."}
     </div>
-    <div>{"Thanks!"}</div>
+    <div>{"Enjoy!"}</div>
   </div>
 )
 
 const AboutContent = () => (
   <div className="space-y-4">
-    <div>{"I'm experienced working with Python, TypeScript, React, and AWS to create, deploy, and maintain scalable and performant applications."}</div>
-    <div>{"I live in London with my partener and our two cats."}</div>
-    <div>{"I'm slightly obsessed with bouldering and rock climbing."}</div>
-    <div>{"I think ALL computer software should look like it's from the matrix."}</div>
+    <div>{"After years of working in finance, and writing code just for fun, I decided to make my hobby pay the bills, so I quit my job, built my first portfolio site and quickly landed my first developer job before the savings ran out."}</div>
+    <div>{"I'm currently developing a suite of SaaS tools to help companies understand and mitigate the environmental impact of their products."}</div>
+    <div>{"I'm primarily work with Python, TypeScript, React, and AWS to create, deploy, and maintain scalable and performant applications."}</div>
+    <div>{"I live in London with my partner and our two cats, and I love rock climbing, boulering and getting out in the nature."}</div>
   </div>
 )
 
@@ -105,6 +105,23 @@ const ExperienceContent = () => {
       }
     </div>)
 }
+
+const ContactContent = () => (
+  <div className="space-y-4 md:text-lg">
+    <div>{"Want to find out more?"}</div>
+    <div>{"You can email me at "}
+      <a href="mailto:ed@edmiles.dev" className="underline">{"ed@edmiles.dev"}</a>
+      {" or drop me a message on my "}
+      <a
+        href="https://www.linkedin.com/in/ed-miles-tech/"
+        className="underline"
+        target="_blank"
+      >{"LinkedIn"}</a>
+    </div>
+    <div>{"Looking forward to hearing from you!"}</div>
+  </div>
+)
+
 export const contentMap: ContentMap = {
   welcome: {
     title: 'Welcome',
@@ -121,6 +138,10 @@ export const contentMap: ContentMap = {
   experience: {
     title: 'Experience',
     content: <ExperienceContent />
+  },
+  contact: {
+    title: 'Contact',
+    content: <ContactContent />
   },
 }
 
