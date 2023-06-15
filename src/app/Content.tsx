@@ -30,10 +30,10 @@ const WelcomeContent = () => (
 
 const AboutContent = () => (
   <div className="space-y-4">
-    <div>{"After years of working in finance, and writing code just for fun, I decided to make my hobby pay the bills, so I quit my job, built my first portfolio site and quickly landed my first developer job before the savings ran out."}</div>
+    <div>{"After years of working in finance and writing code just for fun I decided to make my hobby a career, so I quit my job, built a portfolio, and quickly landed my first developer role."}</div>
     <div>{"I'm currently developing a suite of SaaS tools to help companies understand and mitigate the environmental impact of their products."}</div>
-    <div>{"I'm primarily work with Python, TypeScript, React, and AWS to create, deploy, and maintain scalable and performant applications."}</div>
-    <div>{"I live in London with my partner and our two cats, and I love rock climbing, boulering and getting out in the nature."}</div>
+    <div>{"I primarily work with Python, TypeScript, React, and AWS to create, deploy, and maintain scalable and performant applications."}</div>
+    <div>{"I live in London with my partner and our two cats, and I love rock climbing, bouldering and getting out in nature."}</div>
   </div>
 )
 
