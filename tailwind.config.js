@@ -15,6 +15,9 @@ module.exports = {
         islamGreen: "#008F11",
         malachite: "#00FF41",
       },
+      gridTemplateColumns: {
+        '15': 'repeat(15, minmax(0, 1fr))',
+      }
     },
   },
   plugins: [require('tailwind-scrollbar')],
