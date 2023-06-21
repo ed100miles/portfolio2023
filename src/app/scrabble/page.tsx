@@ -101,7 +101,7 @@ export default function Scrabble() {
 
     return (
       <div
-        className="bg-teal-700 w-11/12 md:w-5/12 grid grid-cols-15 border rounded-sm"
+        className="bg-teal-700 grid grid-cols-15 border rounded-sm"
         onClick={() => setBoardFocused(true)}
       >
         {
@@ -161,7 +161,7 @@ export default function Scrabble() {
 
     return (
       <div
-        className="grid grid-cols-7 gap-1 w-5/6"
+        className="grid grid-cols-7 gap-1 max-w-md m-2"
         onClick={() => setBoardFocused(false)}
       >
         {letters.map((letter, index) => (
@@ -180,32 +180,35 @@ export default function Scrabble() {
   }
 
   const FoundWords = () => (
-    <div className="h-1/5 w-4/5 overflow-scroll text-black text-sm gap-1">
+    <div className="text-black text-sm ">
       {Object.entries(foundWords).sort((a, b) => { return b[0].length - a[0].length }).map((word) => (
-        <div className="h-1/5 flex text-center pb-1 justify-between pr-3" key={word[0]}>
-          <div className="flex gap-1">
-            {word[0].split("").map((letter, index) => (
-              <span
-                className="bg-orange-300 rounded-sm aspect-square drop-shadow-lg"
-                key={word + String(index)}
-              >
-                {letter}
-              </span>
-            ))}
-          </div>
-          <div className="bg-orange-300 rounded-sm aspect-square drop-shadow-lg">
-            {"?"}
-          </div>
+        <div
+          className="gap-1 w-5/6 h-5/6 m-2 grid grid-cols-12"
+          key={word[0]}
+        >
+          {word[0].split("").map((letter, index) => (
+            <span
+              className="bg-orange-300 rounded-sm aspect-square drop-shadow-lg h-full flex justify-center items-center"
+              key={word + String(index)}
+            >{letter}
+            </span>
+          ))}
         </div>
       ))}
     </div >
   )
 
   return (
-    <main className="h-screen w-screen bg-sky-900 flex flex-col md:flex-row items-center justify-evenly">
-      <Board />
-      <Letters />
-      <FoundWords />
+    <main className="h-screen w-screen bg-sky-900 flex flex-col md:flex-row justify-evenly items-center">
+      <div className="w-5/6 md:w-2/5 aspect-square">
+        <Board />
+      </div>
+      <div className="w-2/3 md:w-1/3 overflow-hidden flex flex-col justify-evenly h-1/3 md:h-full">
+        <Letters />
+        <div className="h-1/2 overflow-auto">
+          <FoundWords />
+        </div>
+      </div>
     </main>
   )
 }
