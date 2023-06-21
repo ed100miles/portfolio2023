@@ -4,6 +4,29 @@ import { useDebounce } from "usehooks-ts"
 
 const emptyBoard = Object.fromEntries([...Array(225)].map((_, idx) => [idx, ""]))
 
+const fetchFoundWords = async (env: string, debouncedBoard: typeof emptyBoard, debouncedLetters: string[]) => {
+  let endpoint = ""
+  if (env === "development") {
+    endpoint = 'http://localhost:8000/'
+  }
+  else {
+    endpoint = "https://scrabble23-kdoaodt3pa-nw.a.run.app/"
+  }
+  const response = await fetch(endpoint,
+    {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(
+        {
+          "board": debouncedBoard,
+          "letters": debouncedLetters.join("")
+        })
+    })
+  return response.json()
+}
 
 export default function Scrabble() {
   const [boardState, setBoardState] = useState(emptyBoard)
@@ -17,29 +40,8 @@ export default function Scrabble() {
   const debouncedLetters = useDebounce(letters, 1000)
 
   useEffect(() => {
-    const env = process.env.NODE_ENV
     if (debouncedLetters.join("") !== "") {
-      let endpoint = ""
-      if (env === "development") {
-        endpoint = 'http://localhost:8000/'
-      }
-      else {
-        endpoint = "https://scrabble23-kdoaodt3pa-nw.a.run.app/"
-      }
-      fetch(endpoint,
-        {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(
-            {
-              "board": debouncedBoard,
-              "letters": debouncedLetters.join("")
-            })
-        })
-        .then(response => response.json())
+      fetchFoundWords(process.env.NODE_ENV, debouncedBoard, debouncedLetters)
         .then(response => setFoundWords(response.found))
     }
   }, [debouncedBoard, debouncedLetters])
@@ -178,16 +180,32 @@ export default function Scrabble() {
   }
 
   const FoundWords = () => (
-    <div>
-      {Object.entries(foundWords).map((word) => <div key={word[0]}>{word[0]}</div>)}
+    <div className="h-1/5 w-4/5 overflow-scroll text-black text-sm gap-1">
+      {Object.entries(foundWords).sort((a, b) => { return b[0].length - a[0].length }).map((word) => (
+        <div className="h-1/5 flex text-center pb-1 justify-between pr-3" key={word[0]}>
+          <div className="flex gap-1">
+            {word[0].split("").map((letter, index) => (
+              <span
+                className="bg-orange-300 rounded-sm aspect-square drop-shadow-lg"
+                key={word + String(index)}
+              >
+                {letter}
+              </span>
+            ))}
+          </div>
+          <div className="bg-orange-300 rounded-sm aspect-square drop-shadow-lg">
+            {"?"}
+          </div>
+        </div>
+      ))}
     </div >
   )
 
-return (
-  <main className="h-screen w-screen bg-sky-900 flex flex-col items-center justify-evenly">
-    <Board />
-    <Letters />
-    <FoundWords />
-  </main>
-)
+  return (
+    <main className="h-screen w-screen bg-sky-900 flex flex-col md:flex-row items-center justify-evenly">
+      <Board />
+      <Letters />
+      <FoundWords />
+    </main>
+  )
 }
