@@ -205,7 +205,7 @@ export default function Scrabble() {
       </div>
       <div className="w-2/3 md:w-1/3 overflow-hidden flex flex-col justify-evenly h-1/3 md:h-full">
         <Letters />
-        <div className="h-1/2 overflow-auto">
+        <div className="h-1/2 overflow-auto scrollbar-thumb-orange-300 scrollbar-track-sky-700 scrollbar-thin">
           <FoundWords />
         </div>
       </div>
