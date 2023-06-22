@@ -1,6 +1,7 @@
 "use client"
 import { KeyboardEvent, useEffect, useState } from "react"
 import { useDebounce } from "usehooks-ts"
+import { DefinitionModal } from "./dialog";
 
 const emptyBoard = Object.fromEntries([...Array(225)].map((_, idx) => [idx, ""]))
 
@@ -25,7 +26,8 @@ const fetchFoundWords = async (env: string, debouncedBoard: typeof emptyBoard, d
           "letters": debouncedLetters.join("")
         })
     })
-  return response.json()
+  const foundWords = await response.json()
+  return foundWords
 }
 
 export default function Scrabble() {
@@ -182,17 +184,17 @@ export default function Scrabble() {
   const FoundWords = () => (
     <div className="text-black text-sm ">
       {Object.entries(foundWords).sort((a, b) => { return b[0].length - a[0].length }).map((word) => (
-        <div
-          className="gap-1 w-5/6 h-5/6 m-2 grid grid-cols-12"
-          key={word[0]}
-        >
-          {word[0].split("").map((letter, index) => (
-            <span
-              className="bg-orange-300 rounded-sm aspect-square drop-shadow-lg h-full flex justify-center items-center"
-              key={word + String(index)}
-            >{letter}
-            </span>
-          ))}
+        <div key={word[0]} className="flex items-center">
+          <div className="gap-1 w-5/6 h-5/6 m-2 grid grid-cols-12">
+            {word[0].split("").map((letter, index) => (
+              <span
+                className="bg-orange-300 rounded-sm aspect-square drop-shadow-lg h-full flex justify-center items-center"
+                key={word + String(index)}
+              >{letter}
+              </span>
+            ))}
+          </div>
+          <DefinitionModal word={word}/>
         </div>
       ))}
     </div >
