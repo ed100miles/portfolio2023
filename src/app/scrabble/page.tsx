@@ -2,6 +2,7 @@
 import { KeyboardEvent, useEffect, useState } from "react"
 import { useDebounce } from "usehooks-ts"
 import { DefinitionModal } from "./dialog";
+import { LoadingSpinner } from "./spinner";
 
 const emptyBoard = Object.fromEntries([...Array(225)].map((_, idx) => [idx, ""]))
 
@@ -38,13 +39,16 @@ export default function Scrabble() {
   const [boardFocused, setBoardFocused] = useState(true)
   const [focusedLetter, setFocusedLetter] = useState(0)
   const [foundWords, setFoundWords] = useState({})
+  const [loadingFoundWords, setLoadingFoundWords] = useState(false)
   const debouncedBoard = useDebounce(boardState, 1000)
   const debouncedLetters = useDebounce(letters, 1000)
 
   useEffect(() => {
     if (debouncedLetters.join("") !== "") {
+      setLoadingFoundWords(true)
       fetchFoundWords(process.env.NODE_ENV, debouncedBoard, debouncedLetters)
         .then(response => setFoundWords(response.found))
+        .then(() => setLoadingFoundWords(false))
     }
   }, [debouncedBoard, debouncedLetters])
 
@@ -194,7 +198,7 @@ export default function Scrabble() {
               </span>
             ))}
           </div>
-          <DefinitionModal word={word}/>
+          <DefinitionModal word={word} />
         </div>
       ))}
     </div >
@@ -208,7 +212,7 @@ export default function Scrabble() {
       <div className="w-2/3 md:w-1/3 overflow-hidden flex flex-col justify-evenly h-1/3 md:h-full">
         <Letters />
         <div className="h-1/2 overflow-auto scrollbar-thumb-orange-300 scrollbar-track-sky-700 scrollbar-thin">
-          <FoundWords />
+          {loadingFoundWords ? <LoadingSpinner /> : <FoundWords />}
         </div>
       </div>
     </main>
