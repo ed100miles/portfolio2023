@@ -137,7 +137,7 @@ const ProjectsContent = () => (
         </div>
       </a>
       <a
-        href="https://www.edmiles.dev/scrabble"
+        href="https://github.com/ed100miles/scrabble23/"
         className=""
         target="_blank"
       >
